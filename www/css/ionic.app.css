@@ -9876,9 +9876,15 @@ button {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
 
 #img {
+  max-width: 400px;
   opacity: 0.4;
   margin: 30% 10% 30% 10%;
   width: 80%; }
+
+@media only screen and (min-width: 680px) {
+  #img {
+    margin-top: 200px;
+    width: 80%; } }
 
 body {
   text-align: center;
@@ -9894,11 +9900,5 @@ body {
   /* per correggere il center del body */ }
 
 input {
-  box-shadow: 0 0 4px;
-  border: 20px; }
-
-text {
-  padding: 10px; }
-
-textarea {
-  border: 20px; }
+  opacity: 0.8;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2); }
