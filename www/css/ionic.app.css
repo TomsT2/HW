@@ -9613,10 +9613,10 @@ a.button {
     margin-top: env(safe-area-inset-top); }
 
 .platform-ios.platform-cordova:not(.fullscreen) .bar-header {
-  padding-left: calc( constant(safe-area-inset-left) + 5px);
+  padding-left: calc( constant(safe-area-inset-left) + 5px);
   padding-left: calc(env(safe-area-inset-left) + 5px);
-  padding-right: calc( constant(safe-area-inset-right) + 5px);
-  padding-right: calc( env(safe-area-inset-right) + 5px); }
+  padding-right: calc( constant(safe-area-inset-right) + 5px);
+  padding-right: calc( env(safe-area-inset-right) + 5px); }
   .platform-ios.platform-cordova:not(.fullscreen) .bar-header .buttons:last-child {
     right: calc(constant(safe-area-inset-right) + 5px);
     right: calc(env(safe-area-inset-right) + 5px); }
@@ -9871,3 +9871,34 @@ a.button {
   opacity: 0;
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
+
+button {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
+
+#img {
+  opacity: 0.4;
+  margin: 30% 10% 30% 10%;
+  width: 80%; }
+
+body {
+  text-align: center;
+  /* per far contento IE6- */
+  font-size: 100%;
+  width: 100%;
+  /* altrimenti il margin sotto non ha riferimenti */ }
+
+#tutto {
+  margin: 0 auto;
+  /* centrare nei browser standard */
+  text-align: left;
+  /* per correggere il center del body */ }
+
+input {
+  box-shadow: 0 0 4px;
+  border: 20px; }
+
+text {
+  padding: 10px; }
+
+textarea {
+  border: 20px; }
