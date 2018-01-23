@@ -1,0 +1,36 @@
+<style>
+	input {
+	  border: 1px;
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+	}
+
+</style>
+
+<ion-view>
+  <div>
+    <img src="img/HW_logo.png" id="img">
+    <ion-content class="padding"  scroll="false">
+
+      <h2>Welcome to HolidayWorld!</h2>
+      <br>
+      <br><br>
+      <form>
+        <label>
+          Utente: <input type="text" placeholder="Username" ng-model="data.username"><br>
+        </label>
+        <label>
+          Password: <input type="password" placeholder="Password" ng-model="data.password"><br><br>
+        </label>
+      </form>
+      <br>
+      <button ng-click="login(data)" class="button button-positive">Login</button>
+      <br><br>
+      <p>
+        Oppure
+      </p>
+      <button class="button button-balanced">Registrati</button>
+    </ion-content>
+  </div>
+</ion-view>
