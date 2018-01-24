@@ -6,31 +6,39 @@
 		display: block;
 	}
 
+.loginPage {
+    opacity: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-image: url(/img/HW_logo.png);
+}
+
 
 </style>
 
 <ion-view>
 
-    <ion-content class="padding" scroll="false">
-  <div class="loginPage">
-      <h2>Welcome to HolidayWorld!</h2>
-      <br>
-      <form>
-        <label>
-          <input type="text" placeholder="  Username" ng-model="data.username"><br>
-        </label>
-        <label>
-          <input type="password" placeholder="  Password" ng-model="data.password"><br><br>
-        </label>
-      </form>
-      <br>
-      <button ng-click="login(data)" class="button button-positive">Login</button>
-      <br><br>
-      <p>
-        Oppure
-      </p>
-      <button ng-click="signup()" class="button button-balanced">Registrati</button>
-  </div>
-    </ion-content>
+  <ion-content class="padding loginPage" scroll="false">
+    <h2>Welcome to HolidayWorld!</h2>
+    <br>
+    <br>
+    <form>
+      <label>
+        <input type="text" placeholder="  Username" ng-model="data.username"><br>
+      </label>
+      <label>
+        <input type="password" placeholder="  Password" ng-model="data.password"><br><br>
+      </label>
+    </form>
+    <br>
+    <button ng-click="login(data)" class="button button-positive">Login</button>
+    <br><br>
+    <p>
+      Oppure
+    </p>
+    <button ng-click="signup()" class="button button-balanced">Registrati</button>
+  </ion-content>
 
 </ion-view>

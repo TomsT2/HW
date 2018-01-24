@@ -25,22 +25,6 @@ button {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.loginPage {
-    max-width: 400px;
-    opacity: 1;
-    margin: 30% 10% 30% 10%;
-    width: 80%;
-    background-image: url('/img/HW_logo.png');
-}
-
-@media only screen and (min-width: 680px) {
-
-    #img {
-        margin-top: 200px;
-        width: 80%;
-    }
-}
-
 body {
     text-align: center;
     /* per far contento IE6- */
