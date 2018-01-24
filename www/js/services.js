@@ -103,11 +103,41 @@ function makeCorsRequest() {
   }
 }
 
-  var signup = function() {
+  var signup = function(utente, pw) {
 
-  console.log('name', name);
-  console.log('pw', pw);
 
+    return $q(function(resolve, reject) {
+
+      console.log('name', utente);
+      console.log('pw', pw);
+
+
+      $http({
+
+         method: 'GET',
+         url: 'http://127.0.0.1:8000/login/signup' + '?username=' + name + '&password=' + pw,
+
+      }).then(function successCallback(response) {
+
+          console.log('response signup', response);
+
+          var data = response.data
+          // Make a request and receive your auth token from your server
+          if (response.data)
+          {
+            console.log('Registrazione effettuata');
+            resolve('Utente Registrato. %%%');
+          }
+
+      }, function errorCallback(response) {
+          console.log('errore nella post da angular: ', response);
+            reject('Login Failed.');
+
+          //var window = window.open("", "MsgWindow", "width=500,height=500");
+          //window.document.write(response.data)
+      });
+
+    });
   };
 
   var login = function(name, pw) {
@@ -117,7 +147,7 @@ function makeCorsRequest() {
     $http({
 
        method: 'GET',
-       url: 'http://127.0.0.1:8000/login' + '?username=' + name + '&password=' + pw,
+       url: 'http://127.0.0.1:8000/login/login' + '?username=' + name + '&password=' + pw,
 
     }).then(function successCallback(response) {
 

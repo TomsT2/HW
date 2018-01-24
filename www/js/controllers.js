@@ -41,12 +41,20 @@ angular.module('starter')
 
 
   $scope.signup = function(data) {
-    AuthService.signup(data.username, data.password).then(function(authenticated) {
-      $state.go('main.dash', {}, {reload: true});
-      $scope.setCurrentUsername(data.username);
+    AuthService.signup(data.username, data.password //, data.nome, data.telefono, data.cellulare
+    ).then(function(authenticated) {
+      $scope.GOlogin();
+      $scope.data.password = '';
+      $state.go('login', {}, {reload: true});
+      //$scope.setCurrentUsername(data.username);
+      var alertPopup = $ionicPopup.alert({
+        title: 'Utente registrato',
+        template: 'Benvenuto su HolidayWorld! $$$'
+      });
+
     }, function(err) {
       var alertPopup = $ionicPopup.alert({
-        title: 'Login failed!',
+        title: 'Utente già registrato',
         template: 'Please check your credentials!'
       });
     });
