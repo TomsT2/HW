@@ -27,7 +27,18 @@ angular.module('starter')
 })
 
 .controller('LoginCtrl', function($scope, $state, $ionicPopup, AuthService) {
+
+  $scope.stato = 'login';
   $scope.data = {};
+
+  $scope.GOsignup = function(data) {
+    $scope.stato = 'signup';
+  };
+
+  $scope.GOlogin = function(data) {
+    $scope.stato = 'login';
+  };
+
 
   $scope.signup = function(data) {
     AuthService.signup(data.username, data.password).then(function(authenticated) {
@@ -40,6 +51,7 @@ angular.module('starter')
       });
     });
   };
+
   $scope.login = function(data) {
     AuthService.login(data.username, data.password).then(function(authenticated) {
       $state.go('main.dash', {}, {reload: true});
@@ -51,6 +63,8 @@ angular.module('starter')
       });
     });
   };
+
+
 })
 
 .controller('DashCtrl', function($scope, $state, $http, $ionicPopup, AuthService) {
