@@ -25,10 +25,19 @@ angular.module('starter')
     isAuthenticated = true;
     authToken = token;
 
+//    if (COD_TIPO_UTENTE == 'super') {
+//      role = USER_ROLES.admin
+//    }
+//    else
+//    //if (username == 'public')
+//    {
+//      role = USER_ROLES.public
+//    }
+
     if (username == 'admin') {
       role = USER_ROLES.admin
     }
-    if (username == 'user') {
+    if (username == 'public') {
       role = USER_ROLES.public
     }
 
@@ -91,47 +100,16 @@ function makeCorsRequest() {
   };
 
   xhr.send();
+  }
 }
 
+  var signup = function() {
 
-//  var xhr = new XMLHttpRequest();
-//  if ("withCredentials" in xhr) {
-//
-//    // Check if the XMLHttpRequest object has a "withCredentials" property.
-//    // "withCredentials" only exists on XMLHTTPRequest2 objects.
-//    xhr.open(method, url, true);
-//
-//  } else if (typeof XDomainRequest != "undefined") {
-//
-//    // Otherwise, check if XDomainRequest.
-//    // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
-//    xhr = new XDomainRequest();
-//    xhr.open(method, url);
-//
-//  } else {
-//
-//    // Otherwise, CORS is not supported by the browser.
-//    xhr = null;
-//
-//  }
-//
-//   xhr.onload = function() {
-//     var responseText = xhr.responseText;
-//     console.log(responseText);
-//     // process the response.
-//  };
-//
-//  xhr.onerror = function() {
-//    console.log('There was an error!');
-//  };
-//
-//  return xhr;
-}
+  console.log('name', name);
+  console.log('pw', pw);
 
-//var xhr = createCORSRequest('GET', url);
-//if (!xhr) {
-//  throw new Error('CORS not supported');
-//}
+  };
+
   var login = function(name, pw) {
     return $q(function(resolve, reject) {
 
@@ -149,6 +127,7 @@ function makeCorsRequest() {
         // Make a request and receive your auth token from your server
         if (response.data)
         {
+        //$scope.role = response.data.COD_TIPO_UTENTE;
         storeUserCredentials(name + '.yourServerToken');
         resolve('Login success.');
         } else {
@@ -189,6 +168,7 @@ function makeCorsRequest() {
   loadUserCredentials();
 
   return {
+    signup: signup,
     login: login,
     logout: logout,
     isAuthorized: isAuthorized,

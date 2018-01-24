@@ -10,13 +10,11 @@
 </style>
 
 <ion-view>
-  <div>
-    <img src="img/HW_logo.png" id="img">
-    <ion-content class="padding" scroll="false">
 
+    <ion-content class="padding" scroll="false">
+  <div class="loginPage">
       <h2>Welcome to HolidayWorld!</h2>
       <br>
-      <br><br>
       <form>
         <label>
           <input type="text" placeholder="  Username" ng-model="data.username"><br>
@@ -31,7 +29,8 @@
       <p>
         Oppure
       </p>
-      <button class="button button-balanced">Registrati</button>
-    </ion-content>
+      <button ng-click="signup()" class="button button-balanced">Registrati</button>
   </div>
+    </ion-content>
+
 </ion-view>

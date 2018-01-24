@@ -8,13 +8,9 @@ angular.module('starter', ['ionic'])
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
+
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
 
-      // Don't remove this line unless you know what you are doing. It stops the viewport
-      // from snapping when text inputs are focused. Ionic handles this internally for
-      // a much nicer keyboard experience.
       cordova.plugins.Keyboard.disableScroll(true);
     }
     if(window.StatusBar) {
@@ -44,15 +40,6 @@ angular.module('starter', ['ionic'])
         }
     }
   })
-  //.state('main.error', {
-//    url: 'main/error',
-//    views: {
-//        'dash-tab': {
-//          templateUrl: 'templates/error.html',
-//          controller: 'DashCtrl'
-//        }
-//    }
-//  })
   .state('main.public', {
     url: 'main/public',
     views: {
@@ -96,7 +83,10 @@ angular.module('starter', ['ionic'])
     }
 
     if (!AuthService.isAuthenticated()) {
+    console.log('if !AuthService.isAuthenticated', AuthService)
+      //next = stato richiesto url e template
       if (next.name !== 'login') {
+      console.log(next)
         event.preventDefault();
         $state.go('login');
       }
