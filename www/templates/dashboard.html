@@ -3,22 +3,46 @@
 
 
   <ion-content class="padding">
-    <div class="row"><div class="col text-center">
-      <h3 class="title">Welcome {{username}}!</h3>
-      This could be your Dashboard.
-      <br>
-    <a class="ion-log-out button-stable" ng-click="logout()">Logout</a>
-      <br><br>
-      <button class="button button-full button-positive" ng-click="performValidRequest()">
-        Make Valid Request
-      </button>
-      <button class="button button-full button-energized" ng-click="performUnauthorizedRequest()">
-        Make Request for unauthorized resource
-      </button>
-      <button class="button button-full button-assertive" ng-click="performInvalidRequest()">
-        Make Request without valid token
-      </button>
-      <br><br>
-    </div></div>
+    <div class="row">
+      <div class="col text-center">
+        <h3 class="title">Welcome {{username}}!</h3>
+        This could be your Dashboard.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+      <a class="ion-log-out button-stable" ng-click="logout()" style="font-size:12px"> Logout</a>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col">
+        <!--<button class="button button-full button-positive" ng-click="performValidRequest()"></button>-->
+        <h5>Kit disponibili</h5>
+         <div class="list">
+      <!--<label ng-repeat="(id,DES_TIPO_KIT) in servizi.kit" class="item item-input item-stacked-label">-->
+        <!--<span class="input-label">Name {{id}}</span>-->
+      <!--</label>-->
+    <a  ng-repeat="(id,kit) in servizi.kit" class="item item-thumbnail-left" href="#">
+      <img src="img/cover.jpg">
+      <h2>{{id}}</h2>
+      <p>{{kit.DES_TIPO_KIT}}</p>
+      <p>€: {{kit.VAL_KIT}}</p>
+    </a>
+
+         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <button class="button button-full button-energized" ng-click="performUnauthorizedRequest()">
+          Make Request for unauthorized resource
+        </button>
+        <button class="button button-full button-assertive" ng-click="performInvalidRequest()">
+          Make Request without valid token
+        </button>
+        <br><br>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

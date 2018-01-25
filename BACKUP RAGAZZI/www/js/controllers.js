@@ -13,13 +13,7 @@ angular.module('starter')
   });
 
   $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
-  console.log('LOGOUT');
-
-  $scope.data.username = '';
-  $scope.data.password = '';
-
     AuthService.logout();
-    console.log('logincontroller 22 ctrl.js');
     $state.go('login');
     var alertPopup = $ionicPopup.alert({
       title: 'Session Lost!',
@@ -34,11 +28,8 @@ angular.module('starter')
 
 .controller('LoginCtrl', function($scope, $state, $ionicPopup, AuthService) {
 
-console.log('logincontroller');
-
   $scope.stato = 'login';
   $scope.data = {};
-
 
   $scope.GOsignup = function(data) {
     $scope.stato = 'signup';
@@ -57,20 +48,20 @@ console.log('logincontroller');
       $state.go('login', {}, {reload: true});
       //$scope.setCurrentUsername(data.username);
       var alertPopup = $ionicPopup.alert({
-        title: 'Utente registrato.',
+        title: 'Utente registrato',
         template: 'Benvenuto su HolidayWorld! $$$'
       });
+
     }, function(err) {
       var alertPopup = $ionicPopup.alert({
-        title: 'Utente già registrato.',
+        title: 'Utente già registrato',
         template: 'Please check your credentials!'
       });
     });
   };
 
   $scope.login = function(data) {
-    // AuthService.login(data.username, data.password).then(function(authenticated) {
-    AuthService.login(document.all.item("r1").value, document.all.item("r2").value).then(function(authenticated) {
+    AuthService.login(data.username, data.password).then(function(authenticated) {
       $state.go('main.dash', {}, {reload: true});
       $scope.setCurrentUsername(data.username);
     }, function(err) {
@@ -81,30 +72,29 @@ console.log('logincontroller');
     });
   };
 
+
 })
 
 .controller('DashCtrl', function($scope, $state, $http, $ionicPopup, AuthService) {
 
-$scope.servizi = {};
-  $scope.logout = function() {
-    document.all.item("r1").value = ''
-    document.all.item("r2").value = ''
 
+  $scope.logout = function() {
     AuthService.logout();
     $state.go('login');
   };
 
 
     $http({
-      method: 'GET',
-      url: 'http://127.0.0.1:8000/servizi/get_servizi',
+
+       method: 'GET',
+       url: 'http://127.0.0.1:8000/servizi/',// + '?username=' + name + '&password=' + pw,
       headers : {
-              'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+          'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
       }
+
     }).then(function successCallback(response) {
 
         console.log('response servizi', response);
-        $scope.servizi.kit = angular.copy(response.data);
 
     }, function errorCallback(response) {
         console.log('errore nella post da angular: ', response);

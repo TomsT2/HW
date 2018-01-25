@@ -21,7 +21,6 @@ angular.module('starter')
   }
 
   function useCredentials(token) {
-  console.log('token credential', token);
     username = token.split('.')[0];
     isAuthenticated = true;
     authToken = token;
@@ -35,10 +34,10 @@ angular.module('starter')
 //      role = USER_ROLES.public
 //    }
 
-    if (username == 'SUPER') {
+    if (username == 'admin') {
       role = USER_ROLES.admin
     }
-    if (username == 'CLI') {
+    if (username == 'public') {
       role = USER_ROLES.public
     }
 
@@ -116,7 +115,7 @@ function makeCorsRequest() {
       $http({
 
          method: 'GET',
-         url: 'http://127.0.0.1:8000/login/signup' + '?username=' + utente + '&password=' + pw,
+         url: 'http://127.0.0.1:8000/login/signup' + '?username=' + name + '&password=' + pw,
 
       }).then(function successCallback(response) {
 
@@ -124,16 +123,12 @@ function makeCorsRequest() {
 
           var data = response.data
           // Make a request and receive your auth token from your server
-          if (response.data == 'ok')
+          if (response.data)
           {
             console.log('Registrazione effettuata');
             resolve('Utente Registrato. %%%');
           }
-          else if (response.data == 'ko')
-          {
-            console.log('Registrazione non effettuata');
-            reject('Utente già registrato.');
-          }
+
       }, function errorCallback(response) {
           console.log('errore nella post da angular: ', response);
             reject('Login Failed.');
@@ -145,14 +140,14 @@ function makeCorsRequest() {
     });
   };
 
-  var login = function(utente, pw) {
+  var login = function(name, pw) {
     return $q(function(resolve, reject) {
 
 
     $http({
 
        method: 'GET',
-       url: 'http://127.0.0.1:8000/login/login' + '?username=' + utente + '&password=' + pw,
+       url: 'http://127.0.0.1:8000/login/login' + '?username=' + name + '&password=' + pw,
 
     }).then(function successCallback(response) {
 
@@ -160,10 +155,10 @@ function makeCorsRequest() {
 
         var data = response.data
         // Make a request and receive your auth token from your server
-        if (response.data != 'None')
+        if (response.data)
         {
         //$scope.role = response.data.COD_TIPO_UTENTE;
-        storeUserCredentials(response.data.COD_TIPO_UTENTE + '.yourServerToken');
+        storeUserCredentials(name + '.yourServerToken');
         resolve('Login success.');
         } else {
           reject('Login Failed.');
