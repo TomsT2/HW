@@ -15,14 +15,17 @@ $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
 
-
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
-button {
+.button-positive {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.button-balanced {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -42,16 +45,25 @@ body {
 }
 
 .id {
-	  border: 1px;
-		margin-left: auto;
-		margin-right: auto;
-		display: block;
+    border: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
+
 .inputMat {
     opacity: 0.8;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
 }
 
 .item-stacked-label {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2)
+    text-align: left;
+}
+
+.list {
+    margin-top: 40px;
+}
+
+#paddingTop{
+    margin-top: 40px;
 }

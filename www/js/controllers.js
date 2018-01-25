@@ -32,9 +32,28 @@ angular.module('starter')
   };
 })
 
-.controller('LoginCtrl', function($scope, $state, $ionicPopup, AuthService) {
+.controller('LoginCtrl', function($scope, $state, $http, $ionicPopup, AuthService) {
 
 console.log('logincontroller');
+$scope.registrazione = {};
+
+$http({
+      method: 'GET',
+      url: 'http://127.0.0.1:8000/login/init',
+      headers : {
+              'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
+    }).then(function successCallback(response) {
+
+        console.log('response servizi', response);
+        $scope.registrazione = angular.copy(response.data);
+
+    }, function errorCallback(response) {
+        console.log('errore nella post da angular: ', response);
+
+        //var window = window.open("", "MsgWindow", "width=500,height=500");
+        //window.document.write(response.data)
+    });
 
   $scope.stato = 'login';
   $scope.data = {};
