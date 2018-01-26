@@ -1,13 +1,29 @@
+<style>
+    #nomargin {
+        margin-top: 0px;
+    }
+
+
+    .logout{
+        position: fixed;
+        float: left;
+        margin-top: 140%;
+        margin-left: 10%;
+    }
+
+</style>
+
+
 <ion-side-menus>
 
   <ion-side-menu-content>
 
 
     <ion-view view-title="Dashboard" name="dashboard-view">
-        <ion-header-bar  ng-click="toggleLeft()" class="bar bar-header bar-balanced">
-            <button class="button button-icon icon ion-navicon"></button>
-          <h1 class="title">Dashboard</h1>
-        </ion-header-bar>
+      <ion-header-bar ng-click="toggleLeft()" class="bar bar-header bar-balanced">
+        <button class="button button-icon icon ion-navicon"></button>
+        <h1 class="title">Dashboard</h1>
+      </ion-header-bar>
 
       <ion-content class="padding">
 
@@ -19,18 +35,13 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col text-center">
-          <a class="ion-log-out button-stable" ng-click="logout()" style="font-size:12px"> Logout</a>
-          </div>
-        </div>
         <br>
         <div class="row">
           <div class="col">
             <h5>Kit disponibili</h5>
             <div class="list">
 
-              <a  ng-repeat="(id,kit) in servizi.kit" class="item item-thumbnail-left" href="#">
+              <a ng-repeat="(id,kit) in servizi.kit" class="item item-thumbnail-left" href="#">
                 <img src="img/cover.jpg">
                 <h2>{{id}}</h2>
                 <p>{{kit.DES_TIPO_KIT}}</p>
@@ -67,11 +78,13 @@
       <h1 class="title">Menu</h1>
     </ion-header-bar>
     <ion-content has-header="true">
-      <ul class="list">
-        <a ui-sref="menu.home" nav-clear class="item" ng-click="toggleLeft()">Home</a>
-        <a ui-sref="menu.tab-1" nav-clear class="item" ng-click="toggleLeft()">Chat</a>
-        <a ui-sref="menu.drink" nav-clear class="item" ng-click="toggleLeft()">Drink</a>
+      <ul class="list" id="nomargin">
+        <a ui-sref="menu.home" nav-clear class="item" ng-click="()">Servizi</a>
+        <a ui-sref="menu.tab-1" nav-clear class="item" ng-click="()">I miei ordini</a>
       </ul>
+      <aside class="logout">
+        <a class="button icon-left ion-log-out button-clear button-positive" ng-click="logout()"> Logout</a>
+      </aside>
     </ion-content>
   </ion-side-menu>
 
