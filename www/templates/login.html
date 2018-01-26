@@ -71,18 +71,14 @@
       </label>
       <label class="item item-input item-select">
         <span class="input-label">Modalità pagamento</span>
-        <select>
-          <option>a</option>
-          <option>b</option>
-          <option>c</option>
+        <select id="pagameto" ng-options="pag.COD_PAGAMENTO as pag.DES_PAGAMENTO for pag in init_list.pagamenti" ng-model="init_list.pagamenti[0].COD_PAGAMENTO">
+
         </select>
       </label>
       <label class="item item-input item-select">
         <span class="input-label" align="left">Corner</span>
-        <select>
-          <option>a</option>
-          <option>b</option>
-          <option>c</option>
+        <select id="corner" ng-options="cor.ID_CORNER as cor.NOME_CORNER for cor in init_list.corners" ng-model="init_list.corners[0].ID_CORNER">
+
         </select>
       </label>
 

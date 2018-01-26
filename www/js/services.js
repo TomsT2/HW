@@ -104,19 +104,21 @@ function makeCorsRequest() {
   }
 }
 
-  var signup = function(utente, pw) {
-
+  var signup = function(utente, pass, email, tel, cell, pagameto) {
+    console.log('singin', utente, pass, email, tel, cell, pagameto);
 
     return $q(function(resolve, reject) {
-
-      console.log('name', utente);
-      console.log('pw', pw);
-
 
       $http({
 
          method: 'GET',
-         url: 'http://127.0.0.1:8000/login/signup' + '?username=' + utente + '&password=' + pw,
+         url: 'http://127.0.0.1:8000/login/signup' +
+              '?username=' + utente +
+              '&password=' + pass +
+              '&email=' + email +
+              '&telefono=' + tel +
+              '&cellulare=' + cell +
+              '&pagameto=' + pagameto,
 
       }).then(function successCallback(response) {
 
@@ -127,19 +129,17 @@ function makeCorsRequest() {
           if (response.data == 'ok')
           {
             console.log('Registrazione effettuata');
-            resolve('Utente Registrato. %%%');
+            resolve('Utente Registrato.');
           }
           else if (response.data == 'ko')
           {
             console.log('Registrazione non effettuata');
-            reject('Utente già registrato.');
+            reject('Utente già registrato???.');
           }
       }, function errorCallback(response) {
           console.log('errore nella post da angular: ', response);
             reject('Login Failed.');
 
-          //var window = window.open("", "MsgWindow", "width=500,height=500");
-          //window.document.write(response.data)
       });
 
     });
@@ -156,7 +156,7 @@ function makeCorsRequest() {
 
     }).then(function successCallback(response) {
 
-        console.log('response estrai', response);
+        console.log('response LOGIN', response);
 
         var data = response.data
         // Make a request and receive your auth token from your server

@@ -37,6 +37,7 @@ angular.module('starter')
 console.log('logincontroller');
 $scope.registrazione = {};
 
+// INIT data
 $http({
       method: 'GET',
       url: 'http://127.0.0.1:8000/login/init',
@@ -45,8 +46,8 @@ $http({
       }
     }).then(function successCallback(response) {
 
-        console.log('response servizi', response);
-        $scope.registrazione = angular.copy(response.data);
+        console.log('response INIT', response);
+        $scope.init_list = angular.copy(response.data);
 
     }, function errorCallback(response) {
         console.log('errore nella post da angular: ', response);
@@ -68,8 +69,14 @@ $http({
   };
 
 
-  $scope.signup = function(data) {
-    AuthService.signup(data.username, data.password //, data.nome, data.telefono, data.cellulare
+  $scope.signup = function() {
+    AuthService.signup(
+      document.all.item("utente").value,
+      document.all.item("pass").value,
+      document.all.item("email").value,
+      document.all.item("tel").value,
+      document.all.item("cell").value,
+      document.all.item("pagameto").value
     ).then(function(authenticated) {
       $scope.GOlogin();
       $scope.data.password = '';
@@ -77,7 +84,7 @@ $http({
       //$scope.setCurrentUsername(data.username);
       var alertPopup = $ionicPopup.alert({
         title: 'Utente registrato.',
-        template: 'Benvenuto su HolidayWorld! $$$'
+        template: 'Benvenuto su HolidayWorld!'
       });
     }, function(err) {
       var alertPopup = $ionicPopup.alert({
@@ -87,11 +94,15 @@ $http({
     });
   };
 
-  $scope.login = function(data) {
+  $scope.login = function() {
     // AuthService.login(data.username, data.password).then(function(authenticated) {
     AuthService.login(document.all.item("r1").value, document.all.item("r2").value).then(function(authenticated) {
       $state.go('main.dash', {}, {reload: true});
-      $scope.setCurrentUsername(data.username);
+      $scope.setCurrentUsername(document.all.item("r1").value);
+      console.log('R1');
+      document.all.item("r1").value = '';
+      document.all.item("r2").value = '';
+
     }, function(err) {
       var alertPopup = $ionicPopup.alert({
         title: 'Login failed!',
@@ -106,8 +117,7 @@ $http({
 
 $scope.servizi = {};
   $scope.logout = function() {
-    document.all.item("r1").value = ''
-    document.all.item("r2").value = ''
+
 
     AuthService.logout();
     $state.go('login');
