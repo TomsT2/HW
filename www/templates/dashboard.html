@@ -1,48 +1,78 @@
+<ion-side-menus>
 
-<ion-view view-title="Dashboard" name="dashboard-view">
+  <ion-side-menu-content>
 
 
-  <ion-content class="padding">
-    <div class="row">
-      <div class="col text-center">
-        <h3 class="title">Welcome {{username}}!</h3>
-        This could be your Dashboard.
-      </div>
-    </div>
-    <div class="row">
-      <div class="col text-center">
-      <a class="ion-log-out button-stable" ng-click="logout()" style="font-size:12px"> Logout</a>
-      </div>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col">
-        <!--<button class="button button-full button-positive" ng-click="performValidRequest()"></button>-->
-        <h5>Kit disponibili</h5>
-         <div class="list">
-      <!--<label ng-repeat="(id,DES_TIPO_KIT) in servizi.kit" class="item item-input item-stacked-label">-->
-        <!--<span class="input-label">Name {{id}}</span>-->
-      <!--</label>-->
-    <a  ng-repeat="(id,kit) in servizi.kit" class="item item-thumbnail-left" href="#">
-      <img src="img/cover.jpg">
-      <h2>{{id}}</h2>
-      <p>{{kit.DES_TIPO_KIT}}</p>
-      <p>€: {{kit.VAL_KIT}}</p>
-    </a>
+    <ion-view view-title="Dashboard" name="dashboard-view">
+        <ion-header-bar  ng-click="toggleLeft()" class="bar bar-header bar-balanced">
+            <button class="button button-icon icon ion-navicon"></button>
+          <h1 class="title">Dashboard</h1>
+        </ion-header-bar>
 
-         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col text-center">
-        <button class="button button-full button-energized" ng-click="performUnauthorizedRequest()">
-          Make Request for unauthorized resource
-        </button>
-        <button class="button button-full button-assertive" ng-click="performInvalidRequest()">
-          Make Request without valid token
-        </button>
-        <br><br>
-      </div>
-    </div>
-  </ion-content>
-</ion-view>
+      <ion-content class="padding">
+
+
+        <div class="row">
+          <div class="col text-center">
+            <h3 class="title">Welcome {{username}}!</h3>
+            This could be your Dashboard.
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col text-center">
+          <a class="ion-log-out button-stable" ng-click="logout()" style="font-size:12px"> Logout</a>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <h5>Kit disponibili</h5>
+            <div class="list">
+
+              <a  ng-repeat="(id,kit) in servizi.kit" class="item item-thumbnail-left" href="#">
+                <img src="img/cover.jpg">
+                <h2>{{id}}</h2>
+                <p>{{kit.DES_TIPO_KIT}}</p>
+                <p>€: {{kit.VAL_KIT}}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <p>
+            <button ng-click="openPopover($event)">Open Popover</button>
+          </p>
+        </div>
+
+        <div class="row">
+          <div class="col text-center">
+            <button class="button button-full button-energized" ng-click="performUnauthorizedRequest()">
+              Make Request for unauthorized resource
+            </button>
+            <button class="button button-full button-assertive" ng-click="performInvalidRequest()">
+              Make Request without valid token
+            </button>
+            <br><br>
+          </div>
+        </div>
+      </ion-content>
+    </ion-view>
+
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="bar bar-header bar-balanced">
+      <h1 class="title">Menu</h1>
+    </ion-header-bar>
+    <ion-content has-header="true">
+      <ul class="list">
+        <a ui-sref="menu.home" nav-clear class="item" ng-click="toggleLeft()">Home</a>
+        <a ui-sref="menu.tab-1" nav-clear class="item" ng-click="toggleLeft()">Chat</a>
+        <a ui-sref="menu.drink" nav-clear class="item" ng-click="toggleLeft()">Drink</a>
+      </ul>
+    </ion-content>
+  </ion-side-menu>
+
+</ion-side-menus>
