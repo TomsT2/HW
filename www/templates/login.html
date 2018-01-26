@@ -1,75 +1,74 @@
 <style>
-.loginPage {
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-image: url(img/HW_logo.png);
-}
- input {
-    border: 1px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
+    .loginPage {
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+        background-image: url(img/HW_logo.png);
+    }
 
-
+    input {
+        border: 1px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 
 </style>
 
 <ion-view>
 
-  <ion-content ng-if="stato == 'login'" ng-class="{'loginPage': stato == 'login'}" class="padding" scroll="false">
-    <div class="bar bar-header bar-balanced">
-      <h1 class="title">Home</h1>
-    </div>
-    <br><br>
-    <h2>Welcome to <br>HolidayWorld!</h2>
-    <br><br>
-    <form class="list">
-      <label>
+    <ion-content ng-if="stato == 'login'" ng-class="{'loginPage': stato == 'login'}" class="padding" scroll="false">
+        <div class="bar bar-header bar-balanced">
+            <h1 class="title">Home</h1>
+        </div>
+        <br><br>
+        <h2>Welcome to <br>HolidayWorld!</h2>
+        <br><br>
+        <form class="list">
+            <label>
         <input type="text" placeholder="  Username" id="r1" class="inputMat"><br>
       </label>
-      <label>
+            <label>
         <input type="password" placeholder="  Password" id="r2" class="inputMat"><br><br>
       </label>
-    </form>
-    <br>
-    <button ng-click="login()" class="button button-positive">Accedi</button>
-    <br><br>
-    <p>
-      Oppure
-    </p>
-    <button ng-click="GOsignup()" class="button button-balanced">Registrati</button>
-  </ion-content>
+        </form>
+        <br>
+        <button ng-click="login()" class="button button-positive">Accedi</button>
+        <br><br>
+        <p>
+            Oppure
+        </p>
+        <button ng-click="GOsignup()" class="button button-balanced">Registrati</button>
+    </ion-content>
 
-  <ion-content ng-if="stato == 'signup'" ng-class="{'signupPage': stato == 'login'}" class="padding" scroll="false">
-    <div class="bar bar-header bar-balanced">
-      <button ng-click="GOlogin()" class="button button-icon icon ion-arrow-left-a"></button>
-      <h1 class="title">Registration</h1>
-    </div>
-    <div class="list">
-      <label class="item item-input item-stacked-label">
+    <ion-content ng-if="stato == 'signup'" ng-class="{'signupPage': stato == 'login'}" class="padding" scroll="false">
+        <div class="bar bar-header bar-balanced">
+            <button ng-click="GOlogin()" class="button button-icon icon ion-arrow-left-a"></button>
+            <h1 class="title">Registration</h1>
+        </div>
+        <div class="list">
+            <label class="item item-input item-stacked-label">
         <span class="input-label">Utente</span>
         <input id="utente" type="text">
       </label>
-      <label class="item item-input item-stacked-label">
+            <label class="item item-input item-stacked-label">
         <span class="input-label">Password</span>
         <input id="pass" type="text">
       </label>
-      <label class="item item-input item-stacked-label">
+            <label class="item item-input item-stacked-label">
         <span class="input-label">E-mail</span>
         <input id="email" type="text">
       </label>
-      <label class="item item-input item-stacked-label">
+            <label class="item item-input item-stacked-label">
         <span class="input-label">Numero di telefono</span>
         <input id="tel" type="tel">
       </label>
-      <label class="item item-input item-stacked-label">
+            <label class="item item-input item-stacked-label">
         <span class="input-label">Numero di cellulare</span>
         <input id="cell" type="tel">
       </label>
-      <label class="item item-input item-select">
+            <label class="item item-input item-select">
         <span class="input-label">Modalità pagamento</span>
         <select>
           <option>a</option>
@@ -77,7 +76,7 @@
           <option>c</option>
         </select>
       </label>
-      <label class="item item-input item-select">
+            <label class="item item-input item-select">
         <span class="input-label" align="left">Corner</span>
         <select>
           <option>a</option>
@@ -86,9 +85,9 @@
         </select>
       </label>
 
-      <br><br>
-      <button ng-click="signup(data)" class="button button-balanced">Register</button>
-    </div>
-  </ion-content>
+            <br><br>
+            <button ng-click="signup(data)" class="button button-balanced">Register</button>
+        </div>
+    </ion-content>
 
 </ion-view>
