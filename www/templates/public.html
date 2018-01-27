@@ -1,6 +1,56 @@
-
 <ion-view view-title="Public" name="dashboard-view">
-  <ion-content class="padding">
-      This is open for everyone!
+  <ion-content class="padding" scroll="false">
+
+    <ion-header-bar ng-click="toggleLeft()" class="bar bar-header bar-balanced">
+      <h1 class="title">Prenotazione</h1>
+    </ion-header-bar>
+    <div class="list">
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label" align="left">Tipo di set</span>
+        <select <!-- ng-options="cor.ID_CORNER as cor.NOME_CORNER for cor in init_list.corners"-->
+        ng-model="init_list.corners[0].ID_CORNER">
+        <option>singolo</option>
+        <option>matrimoniale</option>
+        </select>
+      </label>
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label" align="left">Corner</span>
+        <select <!-- ng-options="cor.ID_CORNER as cor.NOME_CORNER for cor in init_list.corners"-->
+        ng-model="init_list.corners[0].ID_CORNER">
+        <option>default</option>
+        </select>
+      </label>
+      </label>
+      <!--<label class="item item-input item-select">-->
+      <!--<span class="input-label" align="left">Corner</span>-->
+      <!--<select id="corner" ng-options="cor.ID_CORNER as cor.NOME_CORNER for cor in init_list.corners"-->
+      <!--ng-model="init_list.corners[0].ID_CORNER">-->
+      <!--</select>-->
+      <!--</label>-->
+      <!--</label>-->
+      <!--<label class="item item-input item-select">-->
+      <!--<span class="input-label" align="left">Corner</span>-->
+      <!--<select id="corner" ng-options="cor.ID_CORNER as cor.NOME_CORNER for cor in init_list.corners"-->
+      <!--ng-model="init_list.corners[0].ID_CORNER">-->
+      <!--</select>-->
+      <!--</label>-->
+      <br><br>
+      data da
+      <label class="item item-input">
+        <input type="date"></label>
+      data a
+      <label class="item item-input">
+        <input type="date"></label>
+    </div>
+    <button class="button button-balanced">Submit</button>
+  </ion-content>
+
+
+  </ion-content>
+  <ion-content ng-if="stato == 'nuova'" ng-class="{'VediPrenotaPage': stato == 'prenot'}"
+               class="padding" scroll="false">
+
   </ion-content>
 </ion-view>

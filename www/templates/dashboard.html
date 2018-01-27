@@ -5,11 +5,10 @@
 
 
     .logout{
-        position: fixed;
-        float: left;
-        margin-top: 140%;
-        margin-left: 10%;
+        float: right;
     }
+
+
 
 </style>
 
@@ -21,12 +20,11 @@
 
     <ion-view view-title="Dashboard" name="dashboard-view">
       <ion-header-bar ng-click="toggleLeft()" class="bar bar-header bar-balanced">
-        <button class="button button-icon icon ion-navicon"></button>
+        <button class="button button-clear ion-log-out" ng-click="logout()"> Logout</button>
         <h1 class="title">Dashboard</h1>
       </ion-header-bar>
 
       <ion-content class="padding">
-
 
         <div class="row">
           <div class="col text-center">
@@ -53,39 +51,12 @@
 
         <div class="row">
           <!--<p>-->
-            <!--<button ng-click="openPopover($event)">Open Popover</button>-->
+          <!--<button ng-click="openPopover($event)">Open Popover</button>-->
           <!--</p>-->
-        </div>
-
-        <div class="row">
-          <div class="col text-center">
-            <button class="button button-full button-energized" ng-click="performUnauthorizedRequest()">
-              Make Request for unauthorized resource
-            </button>
-            <button class="button button-full button-assertive" ng-click="performInvalidRequest()">
-              Make Request without valid token
-            </button>
-            <br><br>
-          </div>
         </div>
       </ion-content>
     </ion-view>
 
   </ion-side-menu-content>
-
-  <ion-side-menu side="left">
-    <ion-header-bar class="bar bar-header bar-balanced">
-      <h1 class="title">Menu</h1>
-    </ion-header-bar>
-    <ion-content has-header="true">
-      <ul class="list" id="nomargin">
-        <a ui-sref="menu.home" nav-clear class="item" ng-click="()">Servizi</a>
-        <a ui-sref="menu.tab-1" nav-clear class="item" ng-click="()">I miei ordini</a>
-      </ul>
-      <aside class="logout">
-        <a class="button icon-left ion-log-out button-clear button-positive" ng-click="logout()"> Logout</a>
-      </aside>
-    </ion-content>
-  </ion-side-menu>
 
 </ion-side-menus>

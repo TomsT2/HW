@@ -40,6 +40,15 @@ angular.module('starter', ['ionic'])
         }
     }
   })
+  .state('main.prenota', {
+    url: 'main/prenota',
+    views: {
+        'dash-tab': {
+          templateUrl: 'templates/prenotazioni.html',
+          controller: 'Ctrl'
+        }
+    }
+  })
   .state('main.public', {
     url: 'main/public',
     views: {
