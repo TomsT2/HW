@@ -1,0 +1,49 @@
+
+
+    <ion-view view-title="Shop Dashboard" name="dashboard-view">
+
+
+      <ion-content class="padding">
+
+
+        <!--TITOLO-->
+        <div class="row">
+          <div class="col text-center">
+            <h3 class="title">Welcome {{username}}!</h3>
+          </div>
+        </div>
+
+        <!--LOGOUT-->
+        <div class="row">
+          <div class="col text-center">
+          <a class="ion-log-out button-stable" ng-click="logout()" style="font-size:12px"> Logout</a>
+          </div>
+        </div>
+        <br>
+        <!--KIT-->
+        <div class="row">
+          <div class="col">
+            <h5>Kit biancheria</h5>
+            <div class="list">
+
+              <a  ng-repeat="(id,kit) in servizi.kit track by $index" class="item item-thumbnail-left" href="#/shop/dettagli/{{id}}">
+                <img ng-src="img/{{servizi.kit[id].img}}">
+                <!--<h2>{{id}}</h2>-->
+                <p>{{kit.DES_TIPO_KIT}}</p>
+                <p>€: {{kit.VAL_KIT}}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!--POPUP-->
+        <!--<div class="row">-->
+          <!--<p>-->
+            <!--<button ng-click="openPopover($event)">Open Popover</button>-->
+          <!--</p>-->
+        <!--</div>-->
+
+
+      </ion-content>
+
+    </ion-view>

@@ -6,6 +6,8 @@ angular.module('starter')
   $scope.username = AuthService.username();
 
   $scope.$on(AUTH_EVENTS.notAuthorized, function(event) {
+   console.log('  $scope.$on(AUTH_EVENTS.notAuthorized, function(event) {');
+
     var alertPopup = $ionicPopup.alert({
       title: 'Unauthorized!',
       template: 'You are not allowed to access this resource.'
@@ -13,7 +15,7 @@ angular.module('starter')
   });
 
   $scope.$on(AUTH_EVENTS.notAuthenticated, function(event) {
-  console.log('LOGOUT');
+  console.log('  $scope.$on(AUTH_EVENTS.notAuthenticated, function(event)');
 
   $scope.data.username = '';
   $scope.data.password = '';
@@ -136,7 +138,7 @@ $scope.servizi = {};
     }).then(function successCallback(response) {
 
         console.log('response servizi', response);
-        $scope.servizi.kit = angular.copy(response.data);
+        //$scope.servizi.kit = angular.copy(response.data.servizi);
 
     }, function errorCallback(response) {
         console.log('errore nella post da angular: ', response);
@@ -186,6 +188,119 @@ $scope.servizi = {};
 //    $scope.popover = popover;
 //  });
 
+
+  $scope.openPopover = function($event) {
+    $scope.popover.show($event);
+  };
+  $scope.closePopover = function() {
+    $scope.popover.hide();
+  };
+  //Cleanup the popover when we're done with it!
+  $scope.$on('$destroy', function() {
+    $scope.popover.remove();
+  });
+  // Execute action on hidden popover
+  $scope.$on('popover.hidden', function() {
+    // Execute action
+  });
+  // Execute action on remove popover
+  $scope.$on('popover.removed', function() {
+    // Execute action
+  });
+
+})
+
+
+.controller('ShopCtrl', function($scope, $rootScope, $ionicPopover, $stateParams, $state, $http, $ionicPopup, AuthService) { //$ionicSideMenuDelegate,
+
+// $scope.toggleLeft = function() {
+//        $ionicSideMenuDelegate.toggleLeft();
+//      };
+//
+
+$scope.id = 0;
+$scope.carrello = [];
+
+$rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {  //toState, toParams, fromState, fromParams
+
+   if (next.name == 'shop.dettagli')
+   {
+    $scope.id = nextParams.id;
+   };
+});
+
+
+$scope.addChart = function (obj) {
+  $scope.carrello.push(obj);
+  console.log('carrello', $scope.carrello);
+};
+
+
+$scope.popChart = function (id) {
+  $scope.carrello.splice(id, 1);;
+  console.log('carrello pop', $scope.carrello);
+};
+
+function setId(id) {
+  $scope.id = id;
+  //console.log('nextParams',nextParams)
+};
+
+$scope.servizi = {};
+//$scope.id = $stateParams.id;
+//console.log('$stateParams.id',$stateParams);
+
+
+  $scope.logout = function() {
+    AuthService.logout();
+    $state.go('login');
+  };
+
+
+    $http({
+      method: 'GET',
+      url: 'http://127.0.0.1:8000/servizi/get_servizi',
+      headers : {
+              'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'
+      }
+    }).then(function successCallback(response) {
+
+        console.log('response shop', response);
+        temp = angular.copy(response.data.servizi);
+        console.log('response temp', temp);
+        for (var i=0; i<response.data.servizi.length; i++)
+        {
+          temp[i].id = i;
+        };
+
+        $scope.servizi.kit = temp;
+        $scope.data = angular.copy(response.data.data);
+        console.log('response $scope.servizi', $scope.servizi);
+
+    }, function errorCallback(response) {
+        console.log('errore nella post da angular: ', response);
+
+        //var window = window.open("", "MsgWindow", "width=500,height=500");
+        //window.document.write(response.data)
+    });
+
+
+  $scope.http = function() {
+    $http.get('http://localhost:8100/notauthorized').then(
+      function(result) {
+        // No result here..
+      }, function(err) {
+        $scope.response = err;
+      });
+  };
+
+    // .fromTemplate() method
+  var template =
+  '<ion-popover-view><ion-header-bar> <h1 class="title">My Popover Title</h1> </ion-header-bar> <ion-content> Hello! </ion-content></ion-popover-view>';
+
+  $scope.popover = $ionicPopover.fromTemplate(template, {
+    scope: $scope
+  });
 
   $scope.openPopover = function($event) {
     $scope.popover.show($event);

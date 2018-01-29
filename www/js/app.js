@@ -4,7 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic'])
-
+.run(function ($rootScope, $state, $stateParams) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+})
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -26,6 +29,46 @@ angular.module('starter', ['ionic'])
     templateUrl: 'templates/login.html',
     controller: 'LoginCtrl'
   })
+  .state('shop', {
+    url: '/',
+    abstract: true,
+    templateUrl: 'templates/shop.html',
+    controller: 'ShopCtrl',
+//    resolve:{
+//       id: ['$stateParams', function($stateParams){
+//           return $stateParams.id;
+//       }]
+//    }
+ })
+  .state('shop.dashboard', {
+    url: 'shop/dashboard',
+    views: {
+        'dashboard-tab': {
+          templateUrl: 'templates/shopdashboard.html',
+//          controller: 'ShopCtrl'
+        }
+    }
+  })
+ .state('shop.dettagli', {
+//    url: 'shop/dettagli',
+//    url: 'shop/dettagli/{id:int}',
+    url: 'shop/dettagli/:id',
+//    url: 'shop/dettagli/id:integer',
+    views: {
+      'dettagli-tab': {
+        templateUrl: 'templates/dettagli.html',
+          //controller: 'ShopCtrl'
+      }
+    }
+})
+  .state('shop.carrello', {
+    url: 'shop/carrello',
+    views: {
+        'carrello-tab': {
+          templateUrl: 'templates/carrello.html',
+        }
+    }
+  })
   .state('main', {
     url: '/',
     abstract: true,
@@ -37,15 +80,6 @@ angular.module('starter', ['ionic'])
         'dash-tab': {
           templateUrl: 'templates/dashboard.html',
           controller: 'DashCtrl'
-        }
-    }
-  })
-  .state('main.prenota', {
-    url: 'main/prenota',
-    views: {
-        'dash-tab': {
-          templateUrl: 'templates/prenotazioni.html',
-          controller: 'Ctrl'
         }
     }
   })
@@ -79,7 +113,14 @@ angular.module('starter', ['ionic'])
 
 .run(function ($rootScope, $state, AuthService, AUTH_EVENTS) {
   $rootScope.$on('$stateChangeStart', function (event, next, nextParams, fromState) {  //toState, toParams, fromState, fromParams
+//      console.log('next', event, next, nextParams, fromState);
+//      console.log('$rootScope', $rootScope);
 
+      if (next.name == 'shop.dettagli') {
+      var scope = angular.element(document.getElementById('ShopCtrl')).scope(nextParams);
+      //console.log('angular',scope);
+      //scope.setId(nextParams.id);
+      };
 
     if ('data' in next && 'authorizedRoles' in next.data) {
       console.log('next.data.authorizedRoles',next.data);
@@ -88,11 +129,12 @@ angular.module('starter', ['ionic'])
         event.preventDefault();
         $state.go($state.current, {}, {reload: true});
         $rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+      //console.log('$rootScope.$broadcast(AUTH_EVENTS.notAuthorized)')
       }
     }
 
     if (!AuthService.isAuthenticated()) {
-    console.log('if !AuthService.isAuthenticated', AuthService)
+    //console.log('if !AuthService.isAuthenticated', AuthService)
       //next = stato richiesto url e template
       if (next.name !== 'login') {
       console.log(next)
